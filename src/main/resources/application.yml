@@ -1,38 +1,65 @@
+
 spring:
-  #thymeleafÅäÖÃ
+  #thymeleafé…ç½®
   thymeleaf:
-    # ¹Ø±Õ»º´æ
+    #å…³é—­ç¼“å­˜
     cache: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/seckill?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: 1234
+    url: jdbc:mysql://47.103.54.65:3306/seckill?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: blue
+    password: 123456
     hikari:
-      # Á¬½Ó³ØÃû£¨¾İËµÊÇ×î¿ìµÄÁ¬½Ó³Ø£©
+      #è¿æ¥æ± åï¼ˆæ®è¯´æ˜¯æœ€å¿«çš„è¿æ¥æ± ï¼‰
       pool-name: DataHikariCP
-      # ×îĞ¡¿ÕÏĞÁ¬½ÓÊı
+      #æœ€å°ç©ºé—²è¿æ¥æ•°
       minimum-idle: 5
-      # ¿ÕÏĞÁ¬½Ó´æ»î×î´óÊ±¼ä£¬Ä¬ÈÏ600000£¨10·ÖÖÓ£©
+      #ç©ºé—²è¿æ¥å­˜æ´»æœ€å¤§æ—¶é—´ï¼Œé»˜è®¤600000ï¼ˆ10åˆ†é’Ÿï¼‰
       idle-timeout: 18000
-      # ×î´óÁ¬½ÓÊı£¬Ä¬ÈÏ10
+      #æœ€å¤§è¿æ¥æ•°ï¼Œé»˜è®¤10
       maximum-pool-size: 10
-      # ´ÓÁ¬½Ó³Ø·µ»ØµÄÁ¬½Ó×Ô¶¯Ìá½»
+      #ä»è¿æ¥æ± è¿”å›çš„è¿æ¥è‡ªåŠ¨æäº¤
       auto-commit: true
-      # Á¬½Ó×î´ó´æ»îÊ±¼ä£¬0±íÊ¾ÓÀ¾Ã´æ»î£¬Ä¬ÈÏ1800000£¨30·ÖÖÓ£©
+      #è¿æ¥æœ€å¤§å­˜æ´»æ—¶é—´ï¼Œ0è¡¨ç¤ºæ°¸ä¹…å­˜æ´»ï¼Œé»˜è®¤1800000ï¼ˆ30åˆ†é’Ÿï¼‰
       max-lifetime: 1800000
-      # Á¬½Ó³¬Ê±Ê±¼ä£¬Ä¬ÈÏ30000£¨30Ãë£©
+      #è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œé»˜è®¤30000ï¼ˆ30ç§’ï¼‰
       connection-timeout: 30000
-      # ²âÊÔÁ¬½ÓÊÇ·ñ¿ÉÓÃµÄ²éÑ¯Óï¾ä
+      #æµ‹è¯•è¿æ¥æ˜¯å¦å¯ç”¨çš„æŸ¥è¯¢è¯­å¥
       connection-test-query: SELECT 1
 
-#Mybatis-plusÅäÖÃ
+  # redisé…ç½®
+  redis:
+    # æœåŠ¡å™¨åœ°å€
+    host: 47.103.54.65:3306
+    #ç«¯å£å·
+    port: 6379
+    #æ•°æ®åº“
+    database: 0
+    #è¶…æ—¶æ—¶é—´
+    timeout: PT10S
+    lettuce:
+      pool:
+        #æœ€å¤§è¿æ¥æ•°ï¼Œé»˜è®¤8
+        max-active: 8
+        #æœ€å¤§è¿æ¥é˜»å¡ç­‰å¾…æ—¶é—´ï¼Œé»˜è®¤-1
+        max-wait: 10000ms
+        #æœ€å¤§ç©ºé—²è¿æ¥ï¼Œé»˜è®¤8
+        max-idle: 200
+        #æœ€å°ç©ºé—²è¿æ¥ï¼Œé»˜è®¤0
+        min-idle: 0
+
+
+#Mybatis-plusé…ç½®
 mybatis-plus:
-  #ÅäÖÃMapper.xmlÓ³ÉäÎÄ¼ş
+  #é…ç½®Mapper.xmlæ˜ å°„æ–‡ä»¶
   mapper-locations: classpath*:/mapper/*Mapper.xml
-  #ÅäÖÃMybatisÊı¾İ·µ»ØÊı¾İ±ğÃû£¨Ä¬ÈÏ±ğÃûÊÇÀàÃû£©
+  #é…ç½®Mybatisæ•°æ®è¿”å›æ•°æ®åˆ«åï¼ˆé»˜è®¤åˆ«åæ˜¯ç±»åï¼‰
   type-aliases-package: com.csl.seckill.pojo
 
 logging:
   level:
     com.csl.seckill.mapper: debug
+
+server:
+  max-http-header-size: 40960
+  port: 8099

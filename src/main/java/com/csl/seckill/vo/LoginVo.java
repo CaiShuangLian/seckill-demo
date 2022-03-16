@@ -1,6 +1,10 @@
 package com.csl.seckill.vo;
 
+import com.csl.seckill.validator.IsMobile;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @Author:CaiShuangLian
@@ -12,6 +16,11 @@ import lombok.Data;
 
 @Data
 public class LoginVo {
+    @NotNull
+    @IsMobile(required = true,message = "手机号码格式错误")
     private String mobile;
+
+    @NotNull
+    @Length(min = 32)
     private String password;
 }

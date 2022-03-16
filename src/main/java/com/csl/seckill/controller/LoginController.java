@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
 /**
  * @Author:CaiShuangLian
  * @FileName:
@@ -32,9 +36,9 @@ public class LoginController {
 
     @RequestMapping("/doLogin")
     @ResponseBody
-    public RespBean doLogin(LoginVo loginVo){
+    public RespBean doLogin(@Valid LoginVo loginVo, HttpServletRequest request, HttpServletResponse response){
         log.info("{}",loginVo);//使用的是Lombok的@Slf4j
-        return userService.doLogin(loginVo);//具体逻辑在service层实现
+        return userService.doLogin(loginVo,request,response);//具体逻辑在service层实现
 //        return null;
     }
 }
